@@ -1,60 +1,46 @@
 import SwiftUI
 
 struct StartJourneyView: View {
-    let viewModel: PlantsViewModel
-    @State private var showSetReminder = false
+    let onSetReminder: () -> Void
 
     var body: some View {
-        VStack(spacing: 0) {
-            PlantsHeader()
-
-            ScrollView {
-                VStack(spacing: 20) {
-                    Image("PlantIllustration")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 170, height: 190)
-                        .accessibilityHidden(true)
-
-                    Text("Start your plant journey!")
-                        .font(.title3.bold())
-
-                    Text("Now all your plants will be in one place and\nwe will help you take care of them :) 🪴")
-                        .font(.caption)
-                        .foregroundStyle(.gray)
-                        .multilineTextAlignment(.center)
-
-                    Button {
-                        showSetReminder = true
-                    } label: {
-                        Text("Set Plant Reminder")
-                            .font(.subheadline.weight(.medium))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .buttonStyle(.glassProminent)
-                    .tint(Color(red: 0.2, green: 0.5, blue: 0.41))
-                    .buttonBorderShape(.capsule)
-                    .padding(.horizontal, 48)
+        ScrollView {
+            VStack(spacing: 0) {
+                Image("PlantIllustration")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 190)
                     .padding(.top, 64)
+                    .accessibilityHidden(true)
+
+                Text("Start your plant journey!")
+                    .font(.title3.bold())
+                    .padding(.top, 32)
+
+                Text("Now all your plants will be in one place and\nwe will help you take care of them :)🪴")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 16)
+
+                Button(action: onSetReminder) {
+                    Text("Set Plant Reminder")
+                        .font(.subheadline.weight(.medium))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 40)
+                        .glassEffect(.regular.tint(Color.accentColor).interactive())
                 }
-                .padding(.top, 60)
-                .padding(.bottom, 24)
+                .buttonStyle(.plain)
+                .padding(.horizontal, 52)
+                .padding(.top, 92)
             }
-        }
-        .background(Color.black.ignoresSafeArea())
-        .foregroundStyle(.white)
-        .preferredColorScheme(.dark)
-        .sheet(isPresented: $showSetReminder) {
-            SetReminderView(viewModel: viewModel)
-                .presentationDetents([.large])
-                .presentationDragIndicator(.hidden)
-                .presentationCornerRadius(28)
+            .frame(maxWidth: .infinity)
         }
     }
 }
 
-// MARK: - Preview
 #Preview {
-    StartJourneyView(viewModel: PlantsViewModel(defaults: nil))
+    StartJourneyView(onSetReminder: {})
+        .background(.black)
+        .preferredColorScheme(.dark)
 }
