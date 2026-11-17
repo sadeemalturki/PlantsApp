@@ -10,8 +10,8 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("My Plants🌱")
-                    .font(.title.bold())
+                Text("My Plants 🌱")
+                    .font(.system(size: 32, weight: .bold))
                 Spacer()
             }
             .padding()
@@ -65,7 +65,7 @@ struct ContentView: View {
                     Image(systemName: "plus")
                         .font(.title2)
                         .frame(width: 44, height: 44)
-                        .glassEffect(.regular.tint(Color.accentColor).interactive(), in: .circle)
+                        .glassEffect(.regular.tint(Color("AccentColor")).interactive(), in: .circle)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Add Plant")
