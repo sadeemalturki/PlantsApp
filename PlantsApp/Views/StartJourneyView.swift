@@ -1,11 +1,16 @@
+// أدوات بناء واجهة الترحيب.
 import SwiftUI
 
+// شاشة البداية قبل إضافة أول نبات.
 struct StartJourneyView: View {
+    // إجراء يطلب من الشاشة الرئيسية فتح نموذج التذكير.
     let onSetReminder: () -> Void
 
+    // محتوى قابل للتمرير يضم صورة الترحيب والنص والزر.
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
+                // صورة توضيحية للزينة، مخفية عن قارئ الشاشة.
                 Image("PlantIllustration")
                     .resizable()
                     .scaledToFit()
@@ -13,6 +18,7 @@ struct StartJourneyView: View {
                     .padding(.top, 70)
                     .accessibilityHidden(true)
 
+                // عنوان الترحيب ووصف فكرة التطبيق.
                 Text("Start your plant journey!")
                     .font(.system(size: 22, weight: .bold))
                     .padding(.top, 36)
@@ -23,6 +29,7 @@ struct StartJourneyView: View {
                     .multilineTextAlignment(.center)
                     .padding(.top, 22)
 
+                // زر بدء إضافة أول تذكير.
                 Button(action: onSetReminder) {
                     Text("Set Plant Reminder")
                         .font(.subheadline.weight(.medium))
@@ -39,6 +46,7 @@ struct StartJourneyView: View {
     }
 }
 
+// معاينة شاشة البداية بالمظهر الداكن.
 #Preview {
     StartJourneyView(onSetReminder: {})
         .background(.black)

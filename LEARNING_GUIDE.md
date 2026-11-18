@@ -84,3 +84,12 @@ The existing app entry point opens ContentView. The original plant illustrations
 7. Swipe to delete, then delete the last plant from its edit form.
 
 Every screen includes a `#Preview`. Previews show layout; they do not prove saving or notifications work.
+
+## Verification performed
+
+- Xcode build passed with no compiler errors or warnings.
+- iPhone 17 simulator: welcome, form, all four pickers, blank-name validation, Cancel, Add, Edit, watering progress, All Done, undo, swipe deletion, form deletion, and relaunch persistence passed.
+- Isolated ViewModel assertions: CRUD, save/load, 50% progress, completion, undo, empty data, and daily versus weekly due dates on the next day passed.
+- Screenshots were visually reviewed. Standard Form row heights differ slightly from Sketch; this is not a pixel-exact reproduction.
+- The No Reminders screen was not reached in live simulator testing because an existing plant was preserved.
+- Actual notification delivery is not verified. The snippet runner has separate undecided notification authorization, so its scheduling attempt did not establish app notification behavior.
